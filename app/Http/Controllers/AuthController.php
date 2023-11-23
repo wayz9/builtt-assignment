@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {   
     /**
      * Show the login form.
@@ -27,5 +27,19 @@ class LoginController extends Controller
         $request->session()->regenerate();
 
         return redirect()->intended();
+    }
+
+    /**
+     * Log the user out of the application.
+     */
+    public function destroy(): RedirectResponse
+    {
+        auth()->logout();
+
+        request()->session()->invalidate();
+
+        request()->session()->regenerateToken();
+
+        return redirect()->route('login');
     }
 }
