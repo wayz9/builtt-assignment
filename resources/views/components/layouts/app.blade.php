@@ -17,23 +17,24 @@
                 <img src="{{ asset('images/logo.svg') }}" alt="{{ config('app.name') }}">
             </a>
 
-            @auth
-                <div class="flex items-center gap-x-8">
+            <div class="flex items-center gap-x-8">
+                @auth
                     <form action="{{ route('logout') }}" method="POST" class="block">
                         @csrf
                         <button type="submit" class="text-sm font-bold">
                             Odjavi se
                         </button>
                     </form>
-                    <livewire:cart-counter />
-                </div>
-            @endauth
+                @endauth
 
-            @guest
-                <a href="/login" class="text-sm font-bold">
-                    Prijavi se
-                </a>
-            @endguest
+                @guest
+                    <a href="/login" class="text-sm font-bold">
+                        Prijavi se
+                    </a>
+                @endguest
+
+                <livewire:cart-counter />
+            </div>
         </nav>
     </header>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -40,6 +41,6 @@ class AuthController extends Controller
 
         request()->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect(RouteServiceProvider::HOME);
     }
 }

@@ -28,30 +28,4 @@ class Cart extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    /**
-     * Get cart items count.
-     */
-    public function itemsCount(): int
-    {
-        return $this->products->sum('pivot.quantity');
-    }
-
-    /**
-     * Get cart total.
-     */
-    public function total(): int
-    {
-        return $this->products->sum(fn (Product $product) 
-            => $product->price * $product->pivot->quantity
-        );
-    }
-
-    /**
-     * Check if product exists in cart.
-     */
-    public function productExistsInCart(Product $product): bool
-    {
-        return $this->products->contains($product);
-    }
 }

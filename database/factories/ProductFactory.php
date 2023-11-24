@@ -23,4 +23,14 @@ class ProductFactory extends Factory
             'image_path' => fake()->imageUrl(),
         ];
     }
+
+    /**
+     * Indicate that the product has a specific price.
+     *
+     * @return \Database\Factories\ProductFactory
+     */
+    public function withStock(int $stock): static
+    {
+        return $this->state(['stock' => $stock]);
+    }
 }

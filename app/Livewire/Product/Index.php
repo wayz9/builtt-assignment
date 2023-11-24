@@ -13,22 +13,17 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    use WorksWithCart;
-
-    public Collection $products;
-    public Cart $cart;
-
-    public function mount(): void
-    {
-        $this->products = Cache::remember('products', 60 * 60, fn () => Product::all());
-        $this->cart = auth()->check() 
-            ? auth()->user()->cart->load('products') 
-            : new Cart();
-    }
-
     #[Layout('components.layouts.app')]
     public function render(): View
     {
-        return view('livewire.product.index');
+        $products = Cache::remember(
+            key: 'products', 
+            ttl: 60 * 60, 
+            callback: fn () => Product::all()
+        );
+
+        return view('livewire.product.index', [
+            'products' => $products,
+        ]);
     }
 }

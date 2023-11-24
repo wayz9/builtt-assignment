@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Product\Index::class)
     ->name('products.index');
 
-Route::get('/cart', Cart\Index::class)
-    ->middleware('auth')
+Route::get('/cart', Cart\Show::class)
     ->name('cart.index');
 
 Route::get('/login', [AuthController::class, 'show'])

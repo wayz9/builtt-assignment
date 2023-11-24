@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertAuthenticated;
@@ -39,7 +40,7 @@ test('user can logout', function() {
     actingAs(User::factory()->create());
 
     post(route('logout'))
-        ->assertRedirect(route('login'));
+        ->assertRedirect(RouteServiceProvider::HOME);
 
     assertGuest();
 });
