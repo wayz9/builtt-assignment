@@ -34,29 +34,46 @@ class DatabaseCart implements CartContract
      */
     public function add(Product $product, int $quantity = 1): void
     {
-        $quantity += $this->items()
-            ->firstWhere('product.id', $product->getKey())
-            ?->quantity ?? 0;
-
-        $this->canBeAddedToCart($product, $quantity);
-
-        if ($this->productExistsInCart($product)) {
-            $this->cart->products()->updateExistingPivot($product, [
-                'quantity' => $quantity,
-            ]);
+        if (! $this->productExistsInCart($product)) {
+            $this->canBeAddedToCart($product, $quantity);
+            $this->cart->products()->attach($product, ['quantity' => $quantity]);
 
             return;
         }
 
-        $this->cart->products()->attach($product, ['quantity' => $quantity]);
+        $existingProduct = $this->items()->firstWhere('product.id', $product->getKey());
+        $newQuantity = $quantity + $existingProduct->quantity ?? 0;
+
+        $this->canBeAddedToCart($product, $newQuantity);
+        $this->cart->products()->updateExistingPivot($product, [
+            'quantity' => $newQuantity
+        ]);
     }
 
     /**
      * Remove a product from the cart.
      */
-    public function remove(Product $product): void
+    public function remove(Product $product, ?int $decrease = null): void
     {
-        $this->cart->products()->detach($product);
+        if (!$this->productExistsInCart($product)) {
+            return;
+        }
+
+        if (is_null($decrease)) {
+            $this->cart->products()->detach($product);
+            return;
+        }
+
+        $existingProduct = $this->items()->firstWhere('product.id', $product->getKey());
+
+        if ($existingProduct->quantity - $decrease <= 0) {
+            $this->cart->products()->detach($product);
+            return;
+        }
+
+        $this->cart->products()->updateExistingPivot($product, [
+            'quantity' => $existingProduct->quantity - $decrease,
+        ]);
     }
 
     /**

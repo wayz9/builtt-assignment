@@ -3,7 +3,6 @@
 namespace App\Livewire\Cart;
 
 use App\Contracts\CartContract;
-use App\DTOs\CartItem;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
@@ -37,12 +36,7 @@ class Item extends Component
         /** @var CartContract $cart */
         $cart = resolve(CartContract::class);
 
-        if ($this->quantity - 1 === 0) {
-            $this->remove();
-            return;
-        }
-
-        $cart->add($this->product, $this->quantity - 1);
+        $cart->remove($this->product, decrease: 1);
         $this->quantity--;
         $this->dispatch('cart:updated');
     }

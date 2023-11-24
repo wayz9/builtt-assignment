@@ -92,3 +92,14 @@ test('cannot add more items to cart than available stock', function() {
     $cart = resolve(CartContract::class);
     $cart->add($this->product, 21);
 })->throws(ValidationException::class);
+
+test('can remove only a certain quantity of item in cart', function() {
+    $this->user->cart->products()->attach($this->product, ['quantity' => 10]);
+
+    /** @var CartContract $cart */
+    $cart = resolve(CartContract::class);
+    $cart->remove($this->product, 5);
+
+    $this->user->cart->refresh();
+    expect($this->user->cart->products->value('pivot.quantity'))->toBe(5);
+});
