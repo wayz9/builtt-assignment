@@ -7,7 +7,7 @@
                 <livewire:cart.item 
                     :product="$cartItem->product" 
                     :quantity="$cartItem->quantity" 
-                    :key="$cartItem->product->getKey()" 
+                    :key="$cartItem->product->getKey() . microtime()" 
                 />
             @empty
                 <p class="mt-5 text-sm text-stone-600">Korpa je prazna.</p>
