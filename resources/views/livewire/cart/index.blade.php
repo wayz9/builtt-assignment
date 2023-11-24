@@ -11,7 +11,7 @@
                         </div>
                         <div class="flex-1 flex flex-col justify-between">
                             <hgroup>
-                                <h4 class="text-lg/6 font-bold">Naturela sa Rogačem i Agava Šećerom</h4>
+                                <h4 class="text-lg/6 font-bold">{{ $product->name }}</h4>
                                 <p class="mt-0.5">
                                     {{ $product->size }} {{ $product->size_unit }}
                                 </p>

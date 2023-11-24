@@ -7,7 +7,7 @@
     <div class="mt-7 grid grid-cols-4 gap-x-6 gap-y-12 pb-16">
         @foreach ($products as $product)
             <div>
-                <div class="relative bg-stone-100 flex items-center justify-center overflow-hidden group">
+                <div class="relative bg-stone-100 flex items-center justify-center overflow-hidden group aspect-square">
                     <img src="{{ $product->product_image_url }}" alt="{{ $product->name }}"
                         class="object-center object-cover">
 

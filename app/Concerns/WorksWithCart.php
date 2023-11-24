@@ -15,7 +15,7 @@ trait WorksWithCart
             $newQuantity = $this->cart->products->firstWhere('id', $product->id)->pivot->quantity + $quantity;
             $this->updateCartItem($product, $newQuantity);
         } else {
-            $this->products()->attach($product, ['quantity' => $quantity]);
+            $this->cart->products()->attach($product, ['quantity' => $quantity]);
         }
 
         $this->dispatch('cart:updated');
@@ -50,7 +50,7 @@ trait WorksWithCart
     {
         if (auth()->guest()) {
             throw ValidationException::withMessages([
-                'guest' => 'You must be logged in to add products to the cart.',
+                'user' => 'You must be logged in to add products to the cart.',
             ]);
         }
 
@@ -63,6 +63,12 @@ trait WorksWithCart
         if ($product->isOutOfStock()) {
             throw ValidationException::withMessages([
                 'quantity' => "Product {$product->name} is out of stock.",
+            ]);
+        }
+
+        if ($quantity > $product->stock) {
+            throw ValidationException::withMessages([
+                'quantity' => "Product {$product->name} has only {$product->stock} items in stock.",
             ]);
         }
 
