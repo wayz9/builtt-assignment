@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Livewire\{Product, Cart};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', Product\Index::class)
+    ->name('products.index');
+
+Route::get('/cart', Cart\Show::class)
+    ->name('cart.index');
+
+Route::get('/login', [AuthController::class, 'show'])
+    ->middleware('guest');
+
+Route::post('/login', [AuthController::class, 'store'])
+    ->middleware('guest')
+    ->name('login');
+
+Route::post('/logout', [AuthController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
