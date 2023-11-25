@@ -3,11 +3,11 @@
         <img src="{{ $product->product_image_url }}" alt="{{ $product->name }}" class="object-center object-cover">
 
         <div x-data="{ qty: 1 }"
-            class="absolute bottom-4 inset-x-0 group-hover:translate-y-0 translate-y-32 opacity-0 group-hover:opacity-100 transition-all duration-200 ease-in">
+            class="absolute bottom-4 inset-x-0 group-hover:translate-y-0 translate-y-32 opacity-0 group-hover:opacity-100 transition-all duration-200 ease-in focus:translate-y-0 focus:opacity-100">
             <div class="px-4 flex items-center gap-x-2">
                 <div class="flex items-center bg-white rounded-full gap-x-1 overflow-hidden">
                     <button type="button" x-on:click="if (qty > 1) qty--" :disabled="qty === 1"
-                        aria-label="Decrease quantity by 1"
+                        aria-label="Decrease quantity by 1" tabindex="-1"
                         class="py-2 px-2.5 rounded-l-full disabled:cursor-not-allowed disabled:text-gray-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5">
@@ -18,6 +18,7 @@
                     <button type="button" x-on:click="qty++" aria-label="Increase quantity by 1"
                         :disabled="{{ $product->isOutOfStock() ? 'true' : 'false' }} || qty ===
                             {{ $product->stock }}"
+                        tabindex="-1"
                         class="py-2 px-2.5 rounded-r-full disabled:cursor-not-allowed disabled:text-gray-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5">
@@ -25,7 +26,7 @@
                         </svg>
                     </button>
                 </div>
-                <button type="button" aria-label="Add to cart" wire:click="addToCart(qty); qty = 1"
+                <button type="button" aria-label="Add to cart" wire:click="addToCart(qty); qty = 1" tabindex="-1"
                     class="h-9 w-9 flex items-center justify-center rounded-full bg-stone-900 text-white">
                     <svg class="w-5 h-5" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
