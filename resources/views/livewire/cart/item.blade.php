@@ -1,5 +1,5 @@
 <div class="py-5 flex">
-    <div class="flex gap-x-9 flex-1">
+    <div class="flex gap-x-6 md:gap-x-9 flex-1">
         <div class="shrink-0 bg-stone-100 rounded flex items-center justify-center aspect-square w-36">
             <img src="{{ $product->product_image_url }}" alt="{{ $product->name }}" class="object-center object-cover">
         </div>
@@ -14,6 +14,13 @@
                         {{ $product->formatted_price }} po kom.
                     </p>
                 @endif
+
+                <div class="mt-2 flex md:hidden gap-x-1">
+                    <p class="text-base md:text-[1.5rem]/9 tracking-tight">
+                        {{ number_format(($product->price * $quantity) / 100, 2, ',', '.') }}
+                    </p>
+                    <p class="text-sm/7 tracking-tight">RSD</p>
+                </div>
             </hgroup>
 
             <div class="flex items-center gap-x-6">
@@ -46,7 +53,7 @@
         </div>
     </div>
 
-    <div class="pt-3">
+    <div class="pt-3 hidden md:block">
         <div class="flex gap-x-1">
             <p class="text-[1.5rem]/9 tracking-tight">
                 {{ number_format(($product->price * $quantity) / 100, 2, ',', '.') }}

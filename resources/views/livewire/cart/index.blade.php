@@ -1,20 +1,16 @@
 <div>
     <h1 class="font-bold mt-12">Tvoja korpa ({{ $count }})</h1>
 
-    <div class="mt-2 flex gap-x-14 pb-16">
+    <div class="mt-2 flex flex-col lg:flex-row gap-14 pb-16">
         <div class="flex-1 divide-y divide-stone-200 space-y-1">
             @forelse ($items as $cartItem)
-                <livewire:cart.item 
-                    :product="$cartItem->product" 
-                    :quantity="$cartItem->quantity" 
-                    :key="$cartItem->product->getKey() . microtime()" 
-                />
+                <livewire:cart.item :product="$cartItem->product" :quantity="$cartItem->quantity" :key="$cartItem->product->getKey() . microtime()" />
             @empty
                 <p class="mt-5 text-sm text-stone-600">Korpa je prazna.</p>
             @endforelse
         </div>
 
-        <div class="p-6 w-full shrink-0 max-w-sm bg-stone-100 rounded self-start min-h-[28.75rem]">
+        <div class="p-6 w-full shrink-0 md:max-w-sm bg-stone-100 rounded self-start md:min-h-[28.75rem]">
             <h2 class="font-bold">Tvoja narudžbina</h2>
 
             <ul class="mt-6 space-y-4">
