@@ -14,7 +14,7 @@
     <header class="bg-stone-100 w-full">
         <nav class="max-w-screen-xl px-6 w-full mx-auto flex items-center justify-between py-4">
             <a href="/" wire:navigate>
-                <img src="{{ asset('images/logo.svg') }}" alt="{{ config('app.name') }}">
+                <img src="{{ asset('images/logo.svg') }}" alt="{{ config('app.name') }}" class="h-10">
             </a>
 
             <div class="flex items-center gap-x-8">
