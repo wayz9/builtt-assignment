@@ -14,9 +14,9 @@ interface CartContract
     public function add(Product $product, int $quantity = 1): void;
 
     /**
-     * Remove a product from the cart.
+     * Remove a product from the cart. (If $decrease is null, remove all)
      */
-    public function remove(Product $product): void;
+    public function remove(Product $product, ?int $decrease = null): void;
 
     /**
      * Get cart items count.

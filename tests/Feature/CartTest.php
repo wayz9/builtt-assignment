@@ -73,6 +73,19 @@ describe('cart functionality', function() {
         expect($this->user->cart->refresh()->products)->toBeEmpty();
     });
 
+    test('can decrement cart item quantity', function() {
+        $this->user->cart->products()->attach($this->product, ['quantity' => 10]);
+
+        Livewire::actingAs($this->user)
+            ->test(Item::class, ['product' => $this->product, 'quantity' => 10])
+            ->call('decrement')
+            ->assertHasNoErrors()
+            ->assertSet('quantity', 9)
+            ->assertDispatched('cart:updated');
+
+        expect($this->user->cart->refresh()->products->value('pivot.quantity'))->toBe(9);
+    });
+
     test('cannot increment past stock max value', function() {
         $this->user->cart->products()->attach($this->product, ['quantity' => 50]);
 

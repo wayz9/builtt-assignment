@@ -25,7 +25,7 @@ class SessionCart implements CartContract
         session()->put('cart', $items);
     }
 
-    public function remove(Product $product): void
+    public function remove(Product $product, ?int $decrease = null): void
     {
         $items = session()->get('cart', []);
 

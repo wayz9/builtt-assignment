@@ -2,6 +2,7 @@
 
 -   PHP 8.2 and above;
 -   Node and NPM or (Bun)
+-   sqlite3 ext (php)
 
 ### Installation
 
@@ -13,7 +14,9 @@ cp .env.example .env
 ```
 
 <br>
+
 -   Generate application key using
+
 <br>
 
 ```bash
@@ -21,6 +24,7 @@ php artisan key:generate
 ```
 
 <br>
+
 -   Run migrations and seed the database;
 
 ```bash

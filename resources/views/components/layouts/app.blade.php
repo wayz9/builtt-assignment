@@ -12,7 +12,7 @@
 
 <body class="antialiased text-stone-900">
     <header class="bg-stone-100 w-full">
-        <nav class="max-w-screen-xl w-full mx-auto flex items-center justify-between py-4">
+        <nav class="max-w-screen-xl px-6 w-full mx-auto flex items-center justify-between py-4">
             <a href="/" wire:navigate>
                 <img src="{{ asset('images/logo.svg') }}" alt="{{ config('app.name') }}">
             </a>
@@ -38,7 +38,7 @@
         </nav>
     </header>
 
-    <main class="max-w-screen-xl mx-auto">
+    <main class="max-w-screen-xl mx-auto px-6">
         {{ $slot }}
     </main>
 

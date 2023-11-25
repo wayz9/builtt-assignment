@@ -2,9 +2,7 @@
 
 namespace App\Livewire\Cart;
 
-use App\Concerns\WorksWithCart;
 use App\Contracts\CartContract;
-use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
