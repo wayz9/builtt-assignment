@@ -17,8 +17,6 @@ cp .env.example .env
 
 -   Generate application key using
 
-<br>
-
 ```bash
 php artisan key:generate
 ```
