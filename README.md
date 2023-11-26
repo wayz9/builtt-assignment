@@ -20,6 +20,13 @@ cp .env.example .env
 ```bash
 php artisan key:generate
 ```
+<br>
+
+-   Install composer depedencies
+
+```bash
+composer install
+```
 
 <br>
 
