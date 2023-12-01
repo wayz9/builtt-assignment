@@ -1,13 +1,14 @@
+
 ### Requirements
 
--   PHP 8.2 and above;
--   Node and NPM or (Bun)
--   sqlite3 ext (php)
+- PHP 8.2 or higher;
+- Node.js and NPM, or Bun;
+- SQLite3 extension for PHP.
 
 ### Installation
 
--   Clone repository
--   Copy example enviroment to .env
+- Clone the repository.
+- Copy the example environment file to `.env`.
 
 ```bash
 cp .env.example .env
@@ -15,14 +16,15 @@ cp .env.example .env
 
 <br>
 
--   Generate application key using
+- Generate the application key.
 
 ```bash
 php artisan key:generate
 ```
+
 <br>
 
--   Install composer depedencies
+- Install Composer dependencies.
 
 ```bash
 composer install
@@ -30,13 +32,13 @@ composer install
 
 <br>
 
--   Run migrations and seed the database;
+- Run migrations and seed the database.
 
 ```bash
 php artisan migrate --seed
 ```
 
-Default user crendetials are;
+Default user credentials are:
 
 ```
 email: test@example.com
@@ -45,15 +47,27 @@ password: password
 
 <br>
 
--   Build the assets with Vite;
+- Build the assets with Vite. First, install dependencies using NPM or Bun, then build.
 
 ```bash
+npm install
+npm run build
+# or
+bun install
 bun run build
 ```
 
 <br>
 
--   Run test suite ensure app is working as it should
+- Create a symbolic link for the storage directory.
+
+```bash
+php artisan storage:link
+```
+
+<br>
+
+- Run the test suite to ensure the application is working correctly.
 
 ```bash
 php artisan test
@@ -61,7 +75,7 @@ php artisan test
 
 <br>
 
--   At last start he development server and test the application
+- Finally, start the development server and test the application.
 
 ```bash
 php artisan serve
